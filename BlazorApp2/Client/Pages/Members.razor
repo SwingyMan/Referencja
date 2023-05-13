@@ -1,0 +1,31 @@
+﻿@page "/members"
+@using BlazorApp2.Shared;
+@inject HttpClient httpClient
+<h3>Members</h3>
+
+	<table>
+		<tr>
+			<th>Imie</th>
+			<th>Nazwisko</th>
+			<th>Funkcja</th>
+			<th>Wydział</th>
+			<th>Kierunek</th>
+		</tr>
+@foreach(var item in member)
+{
+		<tr>
+			<th>@item.FirstName</th>
+			<th>@item.LastName</th>
+			<th>@item.Role</th>
+			<th>@item.Faculty</th>
+			<th>@item.Major</th>
+			<img src="@item.ImagePath">
+		</tr>
+}
+
+</table>
+@code {
+	private List<Member> member = new List<Member>();
+	protected override async Task OnInitializedAsync() =>
+	member = await httpClient.GetFromJsonAsync<List<Member>>("/api/Members/members/show");
+}
