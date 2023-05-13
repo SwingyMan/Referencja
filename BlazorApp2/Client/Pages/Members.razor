@@ -27,5 +27,5 @@
 @code {
 	private List<Member> member = new List<Member>();
 	protected override async Task OnInitializedAsync() =>
-	member = await httpClient.GetFromJsonAsync<List<Member>>("/api/Members/members/show");
+	member = await httpClient.GetFromJsonAsync<List<Member>>("api/members");
 }

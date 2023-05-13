@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorApp2.Server.Controllers
 {
-    [Route("api")]
     [ApiController]
     public class MembersController : ControllerBase
     {
@@ -12,7 +11,7 @@ namespace BlazorApp2.Server.Controllers
         public MembersController(IMembersService membersService) {
             _membersService = membersService;
         }
-        [HttpGet("/members")]
+        [HttpGet("/api/members")]
         public async Task<IActionResult> Show()
         {
             return Ok(await _membersService.Show());
